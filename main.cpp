@@ -20,21 +20,6 @@
 using namespace std;
 using namespace cv;
 
-void convertData_toMat(Mat image, const uint8_t data_image [], int width, int height)
-{
-
-	for (int i = 0; i < width * height; ++i)
-	{
-		if (auto d = data_image[i]){
-			uint8_t pixel = d;
-			image.at<uint8_t>(i, 0) = pixel;
-		}
-	}
-}
-
-
-
-
 int main()
 {
 
