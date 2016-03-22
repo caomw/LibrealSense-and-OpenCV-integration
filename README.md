@@ -2,6 +2,8 @@
 
 This will be a project explaining how to integrate the OpenCV and Librealsense in Visual Studio 2013. The Sample Code will allow to display and save the acquired images in a openCV window and store them in a Mat file. 
 
+The depth data has 16 bytes and it is converted to 8bits to visualization purposes.
+
 ## Installation
 
 Assuming that you have already installed OpenCV and librealsense, you should create a new project in VS2013. 
