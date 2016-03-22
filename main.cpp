@@ -36,7 +36,7 @@ int main()
 	printf("\nUsing device 0, an %s\n", dev->get_name());
 	printf("    Serial number: %s\n", dev->get_serial());
 	printf("    Firmware version: %s\n", dev->get_firmware_version());
-	model_r200 = false;
+	bool model_r200 = false;
 
 	// Configure all streams to run at VGA resolution at 60 frames per second. Capture IR image 2 if needed.
 	dev->enable_stream(rs::stream::depth, 640, 480, rs::format::z16, 60);
