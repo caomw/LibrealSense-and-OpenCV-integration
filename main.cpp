@@ -74,7 +74,7 @@ int main()
 		// If we use R200 model we also plot the second IR image.
 		if (model_r200){
 			Mat ir2(height, width, CV_8UC1, (uchar *) dev->get_frame_data(rs::stream::infrared2));
-			imshow()"IR Image 2", ir2);
+			imshow("IR Image 2", ir2);
 		}
 
 		int key = waitKey(1);
