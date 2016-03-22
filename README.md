@@ -26,3 +26,9 @@ After this I started getting an error when running the cpp programs "The Applica
 This was only resolved after going to Configuration Properties -> Debugging -> Working Directory: C:\opencv\opencv\build\x64\vc12\bin
 
 From what I read, it this error ir resolved by changind the working directory to a x64 folder (in my case it is x64).
+
+## Future Developments
+
+In the next few days I'll include PointCloudSave in a Mat file and in a txt file in the source code.
+
+
