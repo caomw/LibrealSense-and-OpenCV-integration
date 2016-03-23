@@ -13,7 +13,7 @@ On the Project properties->Linker->Advanced confirm that you have target machine
 
 
 I have my instalation folder of librealsense in C:\librealsense\ and the opencv 3.0 in C:\opencv\opencv (you should adapt the following paths to your paths):
-Project Properties -> C/C++ -> General -> Additional Include Directories: C:\librealsense\; C:\opencv\opencv\build\include; C:\opencv\opencv\build\include\opencv
+Project Properties -> C/C++ -> General -> Additional Include Directories: C:\librealsense\include; C:\librealsense\examples; C:\opencv\opencv\build\include; C:\opencv\opencv\build\include\opencv
 Linker -> General -> Additional Library Directories: C:\librealsense\bin\x64; C:\opencv\opencv\build\x64\vc12\lib
 
 You can also do this with property sheets. 
@@ -27,7 +27,7 @@ Garantee also that in C/C++ -> Code Generation -> RunTime Library -> Multi-Threa
 After this I started getting an error when running the cpp programs "The Application was unable to start correctly (0xc000007b)". 
 This was only resolved after going to Configuration Properties -> Debugging -> Working Directory: C:\opencv\opencv\build\x64\vc12\bin
 
-From what I read, it this error ir resolved by changind the working directory to a x64 folder (in my case it is x64).
+From what I read, it this error ir resolved by changind the working directory to a x64 folder (in my case it is x64 machine).
 
 ## Future Developments
 
