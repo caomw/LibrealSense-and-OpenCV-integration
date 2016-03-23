@@ -24,10 +24,12 @@ Linker -> Input -> Additional Dependencies: realsense-d.lib; opencv_ts300d.lib; 
 
 Garantee also that in C/C++ -> Code Generation -> RunTime Library -> Multi-Threaded Debug
 
-After this I started getting an error when running the cpp programs "The Application was unable to start correctly (0xc000007b)". 
-This was only resolved after going to Configuration Properties -> Debugging -> Working Directory: C:\opencv\opencv\build\x64\vc12\bin
+Problems you can find:
 
-From what I read, it this error ir resolved by changind the working directory to a x64 folder (in my case it is x64 machine).
+- "The Application was unable to start correctly (0xc000007b)". This was only resolved after going to Configuration Properties -> Debugging -> Working Directory: C:\opencv\opencv\build\x64\vc12\bin. From what I read, it this error ir resolved by changind the working directory to a x64 folder (in my case it is x64 machine).
+- An error message saying that you are missing realsense-d.dll. Go to your environment variables and add C:\librealsense\bin\x64 to your PATH variable (adapt to your folder installation). 
+
+
 
 ## Future Developments
 
