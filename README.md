@@ -12,11 +12,11 @@ So the first thing to do after creating the project is to define the target mach
 On the Project properties->Linker->Advanced confirm that you have target machine as MachineX64. 
 
 
-I have my instalation folder of librealsense in C:\librealsense\ and the opencv 3.0 in C:\opencv\opencv (you should adapt the following paths to your paths):
+I have my instalation folder of librealsense in C:\librealsense\ and the opencv 3.1 in C:\opencv\opencv (you should adapt the following paths to your paths):
 Project Properties -> C/C++ -> General -> Additional Include Directories: C:\librealsense\include; C:\librealsense\examples; C:\opencv\opencv\build\include; C:\opencv\opencv\build\include\opencv
 Linker -> General -> Additional Library Directories: C:\librealsense\bin\x64; C:\opencv\opencv\build\x64\vc12\lib
 
-You can also do this with property sheets. 
+You can also do this with property sheets (available in the repository -> Be sure you adapth those to your openCV and librealsense directories. The property sheet provided is for OPENCV 3.1 with all the extra_modules available in debug mode. Take that into account and if you use it adapth to your lib files)
 
 Assuming that you have already build librealsense projects:
 
