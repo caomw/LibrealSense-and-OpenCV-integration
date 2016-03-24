@@ -22,8 +22,6 @@ Assuming that you have already build librealsense projects:
 
 Linker -> Input -> Additional Dependencies: realsense-d.lib; opencv_ts300d.lib; opencv_world300d.lib
 
-Garantee also that in C/C++ -> Code Generation -> RunTime Library -> Multi-Threaded Debug
-
 Problems you can find:
 
 - "The Application was unable to start correctly (0xc000007b)". This was only resolved after going to Configuration Properties -> Debugging -> Working Directory: C:\opencv\opencv\build\x64\vc12\bin. From what I read, it this error ir resolved by changind the working directory to a x64 folder (in my case it is x64 machine).
