@@ -1,8 +1,10 @@
 ## Synopsis
 
-This will be a project explaining how to integrate the OpenCV and Librealsense in Visual Studio 2013. The Sample Code will allow to display and save the acquired images in a openCV window and store them in a Mat file. 
+This will be a simple that integrates OpenCV and Librealsense in Visual Studio 2013. The Sample Code will allow to display and save the acquired images. 
 
-The depth data has 16 bytes and it is converted to 8bits to visualization purposes.
+When the "s" key is pressed the program saves the RGB, IR, Depth and the PointCloud. The point cloud is saved in a text file. 
+
+The Escape Key ends the program.
 
 ## Installation
 
@@ -27,10 +29,5 @@ Problems you can find:
 - "The Application was unable to start correctly (0xc000007b)". This was only resolved after going to Configuration Properties -> Debugging -> Working Directory: C:\opencv\opencv\build\x64\vc12\bin. From what I read, it this error ir resolved by changind the working directory to a x64 folder (in my case it is x64 machine).
 - An error message saying that you are missing realsense-d.dll. Go to your environment variables and add C:\librealsense\bin\x64 to your PATH variable (adapt to your folder installation). 
 
-
-
-## Future Developments
-
-In the next few days I'll include PointCloudSave in a Mat file and in a txt file in the source code.
 
 
