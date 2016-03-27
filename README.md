@@ -6,6 +6,8 @@ When the "s" key is pressed the program saves the RGB, IR, Depth and the PointCl
 
 The Escape Key ends the program.
 
+Be sure to edit the save path in main.cpp to edit the directory where the frames are saved.
+
 ## Installation
 
 Assuming that you have already installed OpenCV and librealsense, you should create a new project in VS2013. 
