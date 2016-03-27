@@ -26,7 +26,7 @@ int main() try
 {
 
 	// Define the path where the frames should be saved.
-	string save_directory = "C:\\Users\\freit\\Desktop\\";
+	string save_directory = "C:\\";
 
 
 
