@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include <vector>
 #include <limits>
+#include <string>
 #include <iostream>
 #include <fstream>
 
@@ -23,6 +24,12 @@ using namespace cv;
 
 int main() try
 {
+
+	// Define the path where the frames should be saved.
+	string save_directory = "C:\\Users\\freit\\Desktop\\";
+
+
+
 	// Turn on logging. We can separately enable logging to console or to file, and use different severity filters for each.
 	rs::log_to_console(rs::log_severity::warn);
 	//rs::log_to_file(rs::log_severity::debug, "librealsense.log");
@@ -43,12 +50,12 @@ int main() try
 	// Configure depth and color to run with the device's preferred settings
 	dev->enable_stream(rs::stream::depth, 640, 480, rs::format::z16, 60);
 	dev->enable_stream(rs::stream::color, 640, 480, rs::format::rgb8, 60);
-	dev->enable_stream(rs::stream::infrared, 640, 480, rs::format::y8, 60);
+	dev->enable_stream(rs::stream::infrared, 640, 480, rs::format::y16, 60);
 	
 	// Infrared 2 will only work with R200 model.
 	bool r200_model = false;
 	try{
-		dev->enable_stream(rs::stream::infrared2, 640, 480, rs::format::y8, 60);
+		dev->enable_stream(rs::stream::infrared2, 640, 480, rs::format::y16, 60);
 	r200_model = true;
 	}
 	catch (...) {
@@ -62,6 +69,9 @@ int main() try
 	for (int i = 0; i < 50; ++i) dev->wait_for_frames();
 
 	bool acquire = true;
+
+	int num_frames_saved = 1;
+	string filename;
 
 	while (acquire)
 	{
@@ -77,10 +87,10 @@ int main() try
 		const uint16_t * depth_image_pointCloud = (const uint16_t *) depth_image;
 		Mat depth16(480, 640, CV_16U, depth_image);
 
-		Mat ir1(480, 640, CV_8UC1, (uchar *) dev->get_frame_data(rs::stream::infrared));
+		Mat ir1(480, 640, CV_16U, (uchar *) dev->get_frame_data(rs::stream::infrared));
 		Mat ir2;
 		if (r200_model){
-			Mat ir2(480, 640, CV_8UC1, (uchar *) dev->get_frame_data(rs::stream::infrared2));
+			Mat ir2(480, 640, CV_16U, (uchar *) dev->get_frame_data(rs::stream::infrared2));
 		}
 
 
@@ -92,6 +102,11 @@ int main() try
 		float scale = dev->get_depth_scale();
 
 		imshow("RGB", rgb);
+		imshow("Depth", depth16);
+		imshow("IR", ir1);
+		if (r200_model){
+			imshow("IR 2", ir2);
+		}
 
 		int key = waitKey(1);
 		
@@ -99,7 +114,8 @@ int main() try
 		// If 'S' key is pressed, save the frames
 		if (key == 115){
 			ofstream myfile;
-			myfile.open("PCloud.txt");
+			filename = save_directory + "PCloud-" + to_string(num_frames_saved) + ".txt";
+			myfile.open(filename);
 			
 			for (int dy = 0; dy<depth_intrin.height; ++dy)
 			{
@@ -122,14 +138,17 @@ int main() try
 
 				}
 			}
-
-			imwrite("rgb.png", rgb);
-			imwrite("depth.png", depth16);
-			imwrite("ir.png", ir1);
+			filename = save_directory + "rgb-" + to_string(num_frames_saved) + ".png";
+			imwrite(filename, rgb);
+			filename = save_directory + "depth-" + to_string(num_frames_saved)+ ".png";
+			imwrite(filename, depth16);
+			filename = save_directory + "IR_1-" + to_string(num_frames_saved) + ".png";
+			imwrite(filename, ir1);
 			if (r200_model){
-				imwrite("ir2.png", ir2);
+				filename = save_directory + "IR_2-" + to_string(num_frames_saved) + ".png";
+				imwrite(filename, ir2);
 			}
-
+			num_frames_saved++;
 			printf("Frames and Point Cloud saved in project directory. \n\n");
 		}
 		else if (key == 27){ // If 'Esc' key is pressed, end program
