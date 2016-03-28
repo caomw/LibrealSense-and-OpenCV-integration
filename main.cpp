@@ -26,7 +26,7 @@ int main() try
 {
 
 	// Define the path where the frames should be saved.
-	string save_directory = "C:\\";
+	string save_directory = "C:\\Users\\freit\\Desktop\\";
 
 
 
@@ -78,9 +78,9 @@ int main() try
 
 		// Wait for new frame data
 		dev->wait_for_frames();
-
+		Mat rgb_show;
 		Mat rgb(480, 640, CV_8UC3, (uchar *) dev->get_frame_data(rs::stream::color));
-		cvtColor(rgb, rgb, CV_BGR2RGB);
+		cvtColor(rgb, rgb_show, CV_BGR2RGB);
 
 		uchar *depth_image = (uchar *) dev->get_frame_data(rs::stream::depth);
 		// Saved for PCloud save purposes
@@ -101,7 +101,7 @@ int main() try
 		// Get scale depth parameter
 		float scale = dev->get_depth_scale();
 
-		imshow("RGB", rgb);
+		imshow("RGB", rgb_show);
 		imshow("Depth", depth16);
 		imshow("IR", ir1);
 		if (r200_model){
@@ -139,7 +139,7 @@ int main() try
 				}
 			}
 			filename = save_directory + "rgb-" + to_string(num_frames_saved) + ".png";
-			imwrite(filename, rgb);
+			imwrite(filename, rgb_show);
 			filename = save_directory + "depth-" + to_string(num_frames_saved)+ ".png";
 			imwrite(filename, depth16);
 			filename = save_directory + "IR_1-" + to_string(num_frames_saved) + ".png";
