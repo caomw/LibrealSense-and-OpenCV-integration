@@ -24,7 +24,7 @@ You can also do this with property sheets (available in the repository -> Be sur
 
 Assuming that you have already build librealsense projects:
 
-Linker -> Input -> Additional Dependencies: realsense-d.lib; opencv_ts300d.lib; opencv_world300d.lib (this libs are for OpenCV 3. In the descriptions there are property sheets for openCV 3.1 with the extra_modules, be sure to adapt them)
+Linker -> Input -> Additional Dependencies: realsense-d.lib; opencv_ts300d.lib; opencv_world300d.lib (this libs are for OpenCV 3.0 In the descriptions there are property sheets for openCV 3.1 with the extra_modules, be sure to adapt them)
 
 Problems you can find:
 
