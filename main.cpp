@@ -26,7 +26,7 @@ int main() try
 {
 
 	// Define the path where the frames should be saved.
-	string save_directory = "C:\\Users\\freit\\Desktop\\";
+	string save_directory = "E:/Dropbox/DB Processing/";
 
 
 
@@ -39,8 +39,33 @@ int main() try
 	printf("There are %d connected RealSense devices.\n", ctx.get_device_count());
 	if (ctx.get_device_count() == 0) return EXIT_FAILURE;
 
+	int cam;
+
+	if (ctx.get_device_count() > 1){
+		std::vector<rs::device *> devices;
+		for (int i = 0; i<ctx.get_device_count(); ++i)
+		{
+			devices.push_back(ctx.get_device(i));
+		}
+		
+		cout << endl << endl << "Choose between device the " << ctx.get_device_count() << " devices: " << endl;
+		int num_devices = 1;
+		for (auto dev : devices)
+		{
+			cout << "Device " << num_devices << ": " << dev->get_name() << endl;
+			num_devices;
+		}
+		cout << endl << endl << "Select a number between 1 and " << ctx.get_device_count() << " followed by enter." << endl;
+		cout << "Selected camera: ";
+		
+		cin >> cam;
+
+	}
+	else{ cam = 0;}
+	cam = cam - 1;
+
 	// This tutorial will access only a single device, but it is trivial to extend to multiple devices
-	rs::device * dev = ctx.get_device(0);
+	rs::device * dev = ctx.get_device(cam);
 	printf("\nUsing device 0, an %s\n", dev->get_name());
 	printf("    Serial number: %s\n", dev->get_serial());
 	printf("    Firmware version: %s\n", dev->get_firmware_version());
