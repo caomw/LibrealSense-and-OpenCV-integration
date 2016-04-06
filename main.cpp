@@ -26,7 +26,7 @@ int main() try
 {
 
 	// Define the path where the frames should be saved.
-	string save_directory = "E:/Dropbox/DB Processing/";
+	string save_directory = "E:/Dropbox/DB Temp/007/";
 
 
 
@@ -61,7 +61,7 @@ int main() try
 		cin >> cam;
 
 	}
-	else{ cam = 0;}
+	else{ cam = 1;}
 	cam = cam - 1;
 
 	// This tutorial will access only a single device, but it is trivial to extend to multiple devices
@@ -115,7 +115,7 @@ int main() try
 		Mat ir1(480, 640, CV_16U, (uchar *) dev->get_frame_data(rs::stream::infrared));
 		Mat ir2;
 		if (r200_model){
-			Mat ir2(480, 640, CV_16U, (uchar *) dev->get_frame_data(rs::stream::infrared2));
+			ir2 = Mat(480, 640, CV_16U, (uchar *) dev->get_frame_data(rs::stream::infrared2));
 		}
 
 
